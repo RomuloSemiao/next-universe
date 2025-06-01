@@ -8,7 +8,12 @@ export const posts: IPost[] = [
 ]
 
 async function getPosts(): Promise<IPost[]> {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: 'no-store',
+        })
     const data = await response.json()
 
     return data.posts
