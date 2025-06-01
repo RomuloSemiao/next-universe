@@ -1,7 +1,7 @@
 import PostContent from "@/components/PostContent";
 
-export default async function PostPage({ params }: { params: { id: string } }) {
-    const { id } = params;
+export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
 
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${id}`, {

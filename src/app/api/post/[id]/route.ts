@@ -3,9 +3,10 @@ import { getPosts } from '@/lib/data';
 
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
-    const { id } = params;
+    const { id } = await params;
+
     const posts = await getPosts();
 
     if (!Array.isArray(posts)) {
